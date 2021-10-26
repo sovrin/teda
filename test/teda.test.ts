@@ -15,6 +15,8 @@ const Ref = {
     userAgent: "9",
 };
 
+// albeit scoring 100% code coverage
+// these are not optimal tests
 describe('teda', () => {
     const listeners = {};
 
@@ -98,19 +100,19 @@ describe('teda', () => {
     });
 
     describe('configuration', () => {
-        it('it should use default format', async () => {
+        it('should use default format', async () => {
             const value = await execute(undefined, 'finish');
 
             assert(/\d\s.*-\s.*ms/.test(value), 'return value differs from expectation')
         });
 
-        it('it should use tiny format', async () => {
+        it('should use tiny format', async () => {
             const value = await execute(Format.TINY, 'finish');
 
             assert(/2 3 5 7 - .*ms/.test(value), 'return value differs from expectation')
         });
 
-        it('it should use console.log as adapter', (done) => {
+        it('should use console.log as adapter', (done) => {
             const backup = console.log;
             console.log = (string) => {
                 assert(string === 'foobar', 'return value differs from expectation');
@@ -123,7 +125,7 @@ describe('teda', () => {
             teda('foobar')(req, res, () => listeners['finish']());
         });
 
-        it('it should should skip on GET', (done) => {
+        it('should skip log', (done) => {
             execute(undefined, 'finish', {
                 skip: () => {
                     return true;
