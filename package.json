@@ -1,8 +1,9 @@
 {
   "name": "teda",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "small middleware for logging HTTP requests",
   "main": "./dist/index.js",
+  "exports": "./dist/index.js",
   "types": "./types/index.d.ts",
   "type": "commonjs",
   "scripts": {
@@ -22,6 +23,10 @@
   "author": {
     "name": "Oleg Kamlowski",
     "email": "oleg.kamlowski@thomann.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sovrin/teda"
   },
   "license": "MIT",
   "keywords": [
