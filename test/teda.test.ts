@@ -10,7 +10,7 @@ const Ref = {
     httpVersion: "4",
     statusCode: "5",
     date: "6",
-    contentLength: "7",
+    contentLength: undefined,
     duration: "8",
     userAgent: "9",
 };
@@ -76,7 +76,7 @@ describe('teda', () => {
             {type: 'http-version', options: [':http-version', 'finish'], expected: Ref.httpVersion},
             {type: 'status', options: [':status', 'finish'], expected: Ref.statusCode},
             {type: 'date', options: [':date', 'finish'], expected: /\d+[\/].*?[:].*?\+\d{4}/}, // loosey goosey
-            {type: 'content-length', options: [':content-length', 'finish'], expected: Ref.contentLength},
+            {type: 'content-length', options: [':content-length', 'finish'], expected: '[:content-length]'},
             {type: 'duration', options: ['#:duration#', 'finish'], expected: /(#\d+\.\d+#)/},
             {type: 'url and method', options: [':url :method', 'finish'], expected: Ref.url + ' ' + Ref.method},
             {type: 'url and unknown', options: [':url :unknown', 'finish'], expected: Ref.url + ' :unknown'},
@@ -109,7 +109,7 @@ describe('teda', () => {
         it('should use tiny format', async () => {
             const value = await execute(Format.TINY, 'finish');
 
-            assert(/2 3 5 7 - .*ms/.test(value), 'return value differs from expectation')
+            assert(/2 3 5 \[.*\] - .*ms/.test(value), 'return value differs from expectation')
         });
 
         it('should use console.log as adapter', (done) => {

@@ -67,7 +67,7 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
                 continue;
             }
 
-            let value = traverse(path, context);
+            let value = traverse(path, context) || '[' + pattern + ']';
 
             string = string.replace(pattern, value);
         }
