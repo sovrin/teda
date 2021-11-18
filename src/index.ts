@@ -138,11 +138,10 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
     };
 };
 
-export type {Adapter, Config};
-
 /**
  * User: Oleg Kamlowski <oleg.kamlowski@thomann.de>
  * Date: 23.03.2021
  * Time: 20:47
  */
 export default factory;
+export type {Adapter, Config};
