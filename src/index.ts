@@ -134,7 +134,7 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
             res.on(event, onEvent);
         }
 
-        next();
+        return next();
     };
 };
 
