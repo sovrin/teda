@@ -1,6 +1,6 @@
 import {IncomingMessage, ServerResponse} from 'http';
 
-export type teda = (req: IncomingMessage, res: ServerResponse, next: Function) => void;
+export type teda = (req: IncomingMessage, res: ServerResponse, next: Function) => any;
 
 export type Factory = (format?: string, config?: Config) => teda;
 
