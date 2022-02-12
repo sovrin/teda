@@ -1,7 +1,6 @@
 import teda, {Adapter, Config, Format} from '../src';
 import assert from 'assert';
 import {IncomingMessage, ServerResponse} from 'http';
-import {describe} from 'mocha';
 
 const Ref = {
     remoteAddress: "1",
@@ -10,9 +9,9 @@ const Ref = {
     httpVersion: "4",
     statusCode: "5",
     date: "6",
-    contentLength: undefined,
+    contentLength: 0,
     duration: "8",
-    userAgent: "9",
+    userAgent: undefined,
 };
 
 // albeit scoring 100% code coverage
@@ -65,7 +64,7 @@ describe('teda', () => {
         },
     } as unknown as ServerResponse;
 
-    describe('run down all formats', () => {
+    describe('run down all formats with values', () => {
         const runs = [
             {type: null, options: ['', 'finish'], expected: ''},
             {type: 'empty', options: ['', 'finish'], expected: ''},
@@ -76,11 +75,11 @@ describe('teda', () => {
             {type: 'http-version', options: [':http-version', 'finish'], expected: Ref.httpVersion},
             {type: 'status', options: [':status', 'finish'], expected: Ref.statusCode},
             {type: 'date', options: [':date', 'finish'], expected: /\d+[\/].*?[:].*?\+\d{4}/}, // loosey goosey
-            {type: 'content-length', options: [':content-length', 'finish'], expected: '[:content-length]'},
+            {type: 'content-length', options: [':content-length', 'finish'], expected: '0'},
             {type: 'duration', options: ['#:duration#', 'finish'], expected: /(#\d+\.\d+#)/},
             {type: 'url and method', options: [':url :method', 'finish'], expected: Ref.url + ' ' + Ref.method},
             {type: 'url and unknown', options: [':url :unknown', 'finish'], expected: Ref.url + ' :unknown'},
-            {type: 'user-agent', options: [':user-agent', 'finish'], expected: Ref.userAgent},
+            {type: 'user-agent', options: [':user-agent', 'finish'], expected: '[:user-agent]'},
         ];
 
         for (const {type, options: [format, event], expected} of runs) {
@@ -109,7 +108,7 @@ describe('teda', () => {
         it('should use tiny format', async () => {
             const value = await execute(Format.TINY, 'finish');
 
-            assert(/2 3 5 \[.*\] - .*ms/.test(value), 'return value differs from expectation')
+            assert(/2 3 5 0 - .*ms/.test(value), 'return value differs from expectation')
         });
 
         it('should use console.log as adapter', (done) => {
