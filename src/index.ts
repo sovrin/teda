@@ -94,13 +94,13 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
          * @param res
          */
         const log = (req, res): void => {
-            const elapsed = process.hrtime(start);
+            const end = process.hrtime(start);
 
             const context = {
                 req,
                 res,
                 get duration() {
-                    return (elapsed[0] * 1e3) + (elapsed[1] * 1e-6).toFixed(3);
+                    return (end[0] * 1e9 + end[1]) / 1e6;
                 },
                 get contentLength() {
                     const {['content-length']: length} = res.getHeaders();
