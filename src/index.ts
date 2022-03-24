@@ -1,7 +1,6 @@
 import {teda, Adapter, Config, Factory} from './types';
 
 const Path = {
-    ':remove-addr':    ['req', 'socket', 'remoteAddress'],
     ':method':         ['req', 'method'],
     ':url':            ['req', 'url'],
     ':http-version':   ['req', 'httpVersion'],
@@ -10,6 +9,7 @@ const Path = {
     ':date':           ['date'],
     ':content-length': ['contentLength'],
     ':duration':       ['duration'],
+    ':remove-addr':    ['remoteAddr'],
 };
 
 const EVENTS = [
@@ -114,6 +114,11 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
                     ;
 
                     return `${day}/${month}/${year} ${time} ${tz}`;
+                },
+                get remoteAddr() {
+                    const {['x-forwarded-for']: addr} = res.getHeaders();
+
+                    return addr || traverse(['socket', 'remoteAddress'], req);
                 },
             };
 
