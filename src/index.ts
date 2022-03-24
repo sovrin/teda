@@ -33,7 +33,7 @@ export const Format = {
  */
 const factory: Factory = (format: string = Format.DEFAULT, config: Config = null): teda => {
     const {adapter, skip}: Config = {
-        adapter: console.log,
+        adapter: console.log.bind(console),
         skip: () => false,
         ...config,
     };
