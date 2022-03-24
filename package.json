@@ -1,6 +1,6 @@
 {
   "name": "teda",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "small middleware for logging HTTP requests",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
