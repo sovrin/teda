@@ -55,14 +55,12 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
     const compile = (format: string, context: object): string => {
         let string = format;
         const parts = string.match(PATTERN_REGEX);
-
         if (!parts) {
             return string;
         }
 
         for (const pattern of parts) {
             const path = Path[pattern];
-
             if (!path) {
                 continue;
             }
