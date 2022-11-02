@@ -116,9 +116,7 @@ const factory: Factory = (format: string = Format.DEFAULT, config: Config = null
                     return `${day}/${month}/${year} ${time} ${tz}`;
                 },
                 get remoteAddr() {
-                    const {['x-forwarded-for']: addr} = res.getHeaders();
-
-                    return addr || traverse(['socket', 'remoteAddress'], req);
+                    return traverse(['headers', 'x-forwarded-for'], req) || traverse(['socket', 'remoteAddress'], req);
                 },
             };
 
