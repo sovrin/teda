@@ -69,7 +69,7 @@ describe('teda', () => {
             {type: null, options: ['', 'finish'], expected: ''},
             {type: 'empty', options: ['', 'finish'], expected: ''},
             {type: 'unmodified', options: ['foobar', 'finish'], expected: 'foobar'},
-            {type: 'remove-addr', options: [':remove-addr', 'finish'], expected: Ref.remoteAddress},
+            {type: 'remote-addr', options: [':remote-addr', 'finish'], expected: Ref.remoteAddress},
             {type: 'method', options: [':method', 'finish'], expected: Ref.method},
             {type: 'url', options: [':url', 'finish'], expected: Ref.url},
             {type: 'http-version', options: [':http-version', 'finish'], expected: Ref.httpVersion},

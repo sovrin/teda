@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 ## Predefined Formats
 ### default
 ```
-:remove-addr - [:date] ":method :url HTTP/:http-version" :status :content-length - :duration ms
+:remote-addr - [:date] ":method :url HTTP/:http-version" :status :content-length - :duration ms
 ```
 
 ### tiny
@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
 ```
 
 ## Tokens
-* :remove-addr
+* :remote-addr
 * :method
 * :url
 * :http-version

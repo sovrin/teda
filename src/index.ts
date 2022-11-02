@@ -9,7 +9,7 @@ const Path = {
     ':date':           ['date'],
     ':content-length': ['contentLength'],
     ':duration':       ['duration'],
-    ':remove-addr':    ['remoteAddr'],
+    ':remote-addr':    ['remoteAddr'],
 };
 
 const EVENTS = [
@@ -22,7 +22,7 @@ const PATTERN_REGEX = /(:\w+[(\-\w+)]+)/g;
 const DATE_REGEX = /^\w+\s(\w+)\s(\d{1,2})\s(\d{4})\s(\d{2}:\d{2}:\d{2})\s\w+(\+\d{4})/;
 
 export const Format = {
-    DEFAULT: ':remove-addr - [:date] ":method :url HTTP/:http-version" :status :content-length - :duration ms',
+    DEFAULT: ':remote-addr - [:date] ":method :url HTTP/:http-version" :status :content-length - :duration ms',
     TINY: ':method :url :status :content-length - :duration ms',
 };
 
